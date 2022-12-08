@@ -56,7 +56,7 @@ Form Tambah Barang
 </div>
 
 <div class="form-group row">
-    <label for="" class="col-sm-4 col-form-label">Harga</label>
+    <label for="" class="col-sm-4 col-form-label">Harga Jual</label>
     <div class="col-sm-4">
         <input type="number" class="form-control" id="harga" name="harga">
     </div>

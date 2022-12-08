@@ -117,23 +117,23 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url('laporan/index'); ?>" class="nav-link">
-                                    <i class="nav-icon fa fa-file text-warning"></i>
-                                    <p class="text">Laporan</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="<?= site_url('hutang/index'); ?>" class="nav-link">
                                     <i class="nav-icon fa fa-money-bill text-success"></i>
                                     <p class="text">Hutang</p>
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a href="<?= site_url('laporan/index'); ?>" class="nav-link">
+                                    <i class="nav-icon fa fa-file text-warning"></i>
+                                    <p class="text">Laporan</p>
+                                </a>
+                            </li>
+                            <!-- <li class="nav-item">
                                 <a href="<?= site_url('pinjaman/nasabah'); ?>" class="nav-link">
                                     <i class="nav-icon fa fa-money-bill text-success"></i>
                                     <p class="text">Daftar Pelanggan Kasbon</p>
                                 </a>
-                            </li>
+                            </li> -->
 
                             <li class="nav-header">Utility</li>
                             <li class="nav-item">
@@ -142,12 +142,12 @@
                                     <p class="text">Management User</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="<?= site_url('utility/index'); ?>" class="nav-link">
                                     <i class="nav-icon fa fa-database text-warning"></i>
                                     <p class="text">BackUp DB</p>
                                 </a>
-                            </li>
+                            </li> -->
                         <?php endif; ?>
 
                         <?php if (session()->idlevel == 2) : ?>

@@ -54,7 +54,7 @@ class Hutang extends BaseController
         $data = [
             "hutangid" => $this->request->getPost("hutangid"),
             "nominal" => $this->request->getPost("nominal"),
-            "petugas" => "moham",
+            "petugas" => "ADMIN",
             "sisa" => $sisa
         ];
         $this->hutangAngsModel->save($data);
