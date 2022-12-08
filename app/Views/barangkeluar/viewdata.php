@@ -41,8 +41,7 @@ Data Transaksi Barang Keluar
     </div>
 </div>
 <br>
-<table style="width: 100%;" id="databarangkeluar"
-    class="table table-bordered table-hover dataTable dtr-inline collapsed">
+<table style="width: 100%;" id="databarangkeluar" class="table table-bordered table-hover dataTable dtr-inline collapsed">
     <thead>
         <tr>
             <th>No</th>
@@ -61,87 +60,89 @@ Data Transaksi Barang Keluar
 </table>
 
 <script>
-let csrfToken = '<?= csrf_token() ?>';
-let csrfHash = '<?= csrf_hash() ?>';
+    let csrfToken = '<?= csrf_token() ?>';
+    let csrfHash = '<?= csrf_hash() ?>';
 
-function cektransaksi(faktur) {
-    window.location.href = '/barangkeluar/cektransaksi/' + faktur;
-}
+    function cektransaksi(faktur) {
+        window.location.href = '/barangkeluar/cektransaksi/' + faktur;
+    }
 
-function listDataBarangKeluar() {
-    var table = $('#databarangkeluar').DataTable({
-        destroy: true,
-        "processing": true,
-        "serverSide": true,
-        "order": [],
-        "ajax": {
-            "url": "/barangkeluar/listData",
-            "type": "POST",
-            "data": {
-                [csrfToken]: csrfHash,
-                tglawal: $('#tglawal').val(),
-                tglakhir: $('#tglakhir').val(),
-            }
-        },
-        "columnDefs": [{
-            "targets": [0, 5],
-            "orderable": false,
-        }, ],
-    });
-
-}
-$(document).ready(function() {
-    listDataBarangKeluar();
-
-    $('#tombolTampil').click(function(e) {
-        e.preventDefault();
-        listDataBarangKeluar();
-    });
-});
-
-function cetak(faktur) {
-    let windowCetak = window.open('/barangkeluar/cetakfaktur/' + faktur,
-        "Cetak Faktur Barang Keluar",
-        "width=200,height=400");
-
-    windowCetak.focus();
-}
-
-function hapus(faktur) {
-    Swal.fire({
-        title: 'Hapus Transaksi',
-        text: "Yakin dihapus ?",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Ya, Hapus !'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            $.ajax({
-                type: "post",
-                url: "/barangkeluar/hapusTransaksi",
-                data: {
+    function listDataBarangKeluar() {
+        var table = $('#databarangkeluar').DataTable({
+            destroy: true,
+            "processing": true,
+            "serverSide": true,
+            "order": [],
+            "ajax": {
+                "url": "/barangkeluar/listData",
+                "type": "POST",
+                "data": {
                     [csrfToken]: csrfHash,
-                    faktur: faktur
-                },
-                dataType: "json",
-                success: function(response) {
-                    if (response.sukses) {
-                        listDataBarangKeluar();
-                    }
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + '\n' + thrownError);
+                    tglawal: $('#tglawal').val(),
+                    tglakhir: $('#tglakhir').val(),
                 }
-            });
-        }
-    })
-}
+            },
+            "columnDefs": [{
+                "targets": [0, 5],
+                "orderable": false,
+            }, ],
+        });
 
-function edit(faktur) {
-    window.location.href = ('/barangkeluar/edit/') + faktur;
-}
+    }
+    $(document).ready(function() {
+        listDataBarangKeluar();
+
+        $('#tombolTampil').click(function(e) {
+            e.preventDefault();
+            listDataBarangKeluar();
+        });
+    });
+
+    function cetak(faktur) {
+        let windowCetak = window.open('/barangkeluar/cetakfaktur/' + faktur,
+            "Cetak Faktur Barang Keluar",
+            "width=200,height=400");
+
+        windowCetak.focus();
+    }
+
+    function hapus(faktur) {
+        Swal.fire({
+            title: 'Hapus Transaksi',
+            text: "Yakin dihapus ?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Hapus !'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "post",
+                    url: "/barangkeluar/hapusTransaksi",
+                    data: {
+                        [csrfToken]: csrfHash,
+                        faktur: faktur
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.sukses) {
+                            listDataBarangKeluar();
+                        } else {
+                            alert(response.error);
+                        }
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        alert(xhr.status + '\n' + thrownError);
+                    }
+                });
+            }
+        })
+    }
+
+    function edit(faktur) {
+        window.location.href = ('/barangkeluar/edit/') + faktur;
+    }
 </script>
 
 <?= $this->endSection('isi') ?>

@@ -49,7 +49,7 @@ class Filters extends BaseConfig
             ]
         ],
         'after' => [
-            'filterAdmin' => ['except' => ['main/*', 'satuan/*', 'kategori/*', 'barang/*', 'barangmasuk/*', 'barangkeluar/*', 'pelanggan/*', 'laporan/*', 'utility/*', 'payment/*', 'users/*', 'pinjaman/*', 'nasabah/*']],
+            'filterAdmin' => ['except' => ['main/*', 'satuan/*', 'kategori/*', 'barang/*', 'barangmasuk/*', 'barangkeluar/*', 'pelanggan/*', 'hutang/*', 'laporan/*', 'utility/*', 'payment/*', 'users/*', 'pinjaman/*', 'nasabah/*']],
             'filterKasir' => ['except' => ['barangkeluar/*', 'main/*', 'pelanggan/*', 'pinjaman/*']],
             'filterGudang' => ['except' => ['barangmasuk/*', 'main/*']],
             'filterPimpinan' => ['except' => ['main/*', 'laporan/*']],

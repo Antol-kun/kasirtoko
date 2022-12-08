@@ -134,7 +134,7 @@ Manajemen Data Kasbon
             dataType: 'json',
             success: function(data) {
                 for (let i = data.length - 1; i >= 0; i--) {
-                    baris += "<tr><td>" + (data.length - i) + "</td><td>" + data[i].nik + "</td><td>" + data[i].nama + "</td><td>" + data[i].tanggal + "</td><td>" + data[i].keterangan + "</td><td>" + data[i].nominal + "</td><td>" + data[i].cicilan + "</td><td>" + data[i].petugas + "</td><td>"
+                    baris += "<tr><td>" + (data.length - i) + "</td><td>" + data[i].nik + "</td><td>" + data[i].nama + "</td><td>" + moment(data[i].tanggal).format("DD/MM/YY") + "</td><td>" + data[i].keterangan + "</td><td>" + data[i].nominal + "</td><td>" + data[i].cicilan + "</td><td>" + data[i].petugas + "</td><td>"
                     if (data[i].status == 1) {
                         baris += "Lunas"
                     } else {
@@ -229,7 +229,7 @@ Manajemen Data Kasbon
             success: function(data) {
                 if (data.length) {
                     for (let i = data.length - 1; i >= 0; i--) {
-                        baris += "<tr><td>" + (data.length - i) + "</td><td>" + data[i].tanggal + "</td><td>" + data[i].nominal + "</td><td>" + data[i].petugas + "</td><td>" + data[i].sisa + "</td>"
+                        baris += "<tr><td>" + (data.length - i) + "</td><td>" + moment(data[i].tanggal).format("DD/MM/YY") + "</td><td>" + data[i].nominal + "</td><td>" + data[i].petugas + "</td><td>" + data[i].sisa + "</td>"
                     }
                 } else {
                     baris += "<tr><td colspan='5' class='text-center'>Pinjaman ini belum dicicil :(</td></tr>"
@@ -259,9 +259,13 @@ Manajemen Data Kasbon
                 muatCicilan(idPinjaman)
                 tampilkan()
             }
-        });
+        }); 
     }
 </script>
 
 
 <?= $this->endSection('isi') ?>
+
+<?= $this->section('script') ?>
+<script src="<?= base_url() ?>/plugins/moment/moment.min.js"></script>
+<?= $this->endSection('script') ?>

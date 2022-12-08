@@ -7,8 +7,7 @@
     <title>Aplikasi Gudang Barang Masuk dan Barang Keluar</title>
 
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?= base_url() ?>/plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
@@ -20,8 +19,8 @@
     <script src="<?= base_url() ?>/plugins/sweetalert2/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<!-- <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script> -->
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+    <!-- <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script> -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 
 </head>
 
@@ -60,8 +59,7 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="<?= base_url() ?>/index3.html" class="brand-link">
-                <img src="<?= base_url() ?>/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
-                    class="brand-image img-circle elevation-3" style="opacity: .8">
+                <img src="<?= base_url() ?>/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">App POS</span>
             </a>
 
@@ -70,8 +68,7 @@
                 <!-- Sidebar user (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="<?= base_url() ?>/dist/img/user2-160x160.jpg" class="img-circle elevation-2"
-                            alt="User Image">
+                        <img src="<?= base_url() ?>/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
                         <a href="#" class="d-block">
@@ -83,106 +80,105 @@
                 <!-- SidebarSearch Form -->
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <?php if (session()->idlevel == 1) : ?>
-                        <li class="nav-header">Master</li>
-                        <li class="nav-item">
-                            <a href="<?= site_url('kategori/index'); ?>" class="nav-link">
-                                <i class="nav-icon fa fa-tasks text-primary"></i>
-                                <p class="text">Kategori</p>
-                            </a>
-                        </li>
-                        <!-- <li class="nav-item">
+                            <li class="nav-header">Master</li>
+                            <li class="nav-item">
+                                <a href="<?= site_url('kategori/index'); ?>" class="nav-link">
+                                    <i class="nav-icon fa fa-tasks text-primary"></i>
+                                    <p class="text">Kategori</p>
+                                </a>
+                            </li>
+                            <!-- <li class="nav-item">
                             <a href="<?= site_url('satuan/index'); ?>" class="nav-link">
                                 <i class="nav-icon fa fa-angle-double-right text-warning"></i>
                                 <p class="text">Satuan</p>
                             </a>
                         </li> -->
-                        <li class="nav-item">
-                            <a href="<?= site_url('barang/index'); ?>" class="nav-link">
-                                <i class="nav-icon fa fa-tasks text-danger"></i>
-                                <p class="text">Barang</p>
-                            </a>
-                        </li>
-                        <li class="nav-header">Transaksi</li>
-                        <li class="nav-item">
-                            <a href="<?= site_url('barangmasuk/data'); ?>" class="nav-link">
-                                <i class="nav-icon fa fa-arrow-circle-down text-primary"></i>
-                                <p class="text">Barang Masuk</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= site_url('barangkeluar/data'); ?>" class="nav-link">
-                                <i class="nav-icon fa fa-arrow-circle-up text-warning"></i>
-                                <p class="text">Barang Keluar</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= site_url('laporan/index'); ?>" class="nav-link">
-                                <i class="nav-icon fa fa-file text-warning"></i>
-                                <p class="text">Laporan</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                        <a href="<?= site_url('pinjaman/index'); ?>" class="nav-link">
-                                <i class="nav-icon fa fa-money-bill text-success"></i>
-                                <p class="text">Hutang</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                        <a href="<?= site_url('pinjaman/nasabah'); ?>" class="nav-link">
-                                <i class="nav-icon fa fa-money-bill text-success"></i>
-                                <p class="text">Daftar Pelanggan Kasbon</p>
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a href="<?= site_url('barang/index'); ?>" class="nav-link">
+                                    <i class="nav-icon fa fa-tasks text-danger"></i>
+                                    <p class="text">Barang</p>
+                                </a>
+                            </li>
+                            <li class="nav-header">Transaksi</li>
+                            <li class="nav-item">
+                                <a href="<?= site_url('barangmasuk/data'); ?>" class="nav-link">
+                                    <i class="nav-icon fa fa-arrow-circle-down text-primary"></i>
+                                    <p class="text">Barang Masuk</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= site_url('barangkeluar/data'); ?>" class="nav-link">
+                                    <i class="nav-icon fa fa-arrow-circle-up text-warning"></i>
+                                    <p class="text">Barang Keluar</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= site_url('laporan/index'); ?>" class="nav-link">
+                                    <i class="nav-icon fa fa-file text-warning"></i>
+                                    <p class="text">Laporan</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= site_url('hutang/index'); ?>" class="nav-link">
+                                    <i class="nav-icon fa fa-money-bill text-success"></i>
+                                    <p class="text">Hutang</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= site_url('pinjaman/nasabah'); ?>" class="nav-link">
+                                    <i class="nav-icon fa fa-money-bill text-success"></i>
+                                    <p class="text">Daftar Pelanggan Kasbon</p>
+                                </a>
+                            </li>
 
-                        <li class="nav-header">Utility</li>
-                        <li class="nav-item">
-                            <a href="<?= site_url('Users/data'); ?>" class="nav-link">
-                                <i class="nav-icon fa fa-users text-danger"></i>
-                                <p class="text">Management User</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= site_url('utility/index'); ?>" class="nav-link">
-                                <i class="nav-icon fa fa-database text-warning"></i>
-                                <p class="text">BackUp DB</p>
-                            </a>
-                        </li>
+                            <li class="nav-header">Utility</li>
+                            <li class="nav-item">
+                                <a href="<?= site_url('Users/data'); ?>" class="nav-link">
+                                    <i class="nav-icon fa fa-users text-danger"></i>
+                                    <p class="text">Management User</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= site_url('utility/index'); ?>" class="nav-link">
+                                    <i class="nav-icon fa fa-database text-warning"></i>
+                                    <p class="text">BackUp DB</p>
+                                </a>
+                            </li>
                         <?php endif; ?>
 
                         <?php if (session()->idlevel == 2) : ?>
-                        <li class="nav-header">Transaksi</li>
-                        <li class="nav-item">
-                            <a href="<?= site_url('barangkeluar/data'); ?>" class="nav-link">
-                                <i class="nav-icon fa fa-arrow-circle-up text-warning"></i>
-                                <p class="text">Barang Keluar</p>
-                            </a>
-                        </li>
+                            <li class="nav-header">Transaksi</li>
+                            <li class="nav-item">
+                                <a href="<?= site_url('barangkeluar/data'); ?>" class="nav-link">
+                                    <i class="nav-icon fa fa-arrow-circle-up text-warning"></i>
+                                    <p class="text">Barang Keluar</p>
+                                </a>
+                            </li>
                         <?php endif; ?>
 
                         <?php if (session()->idlevel == 3) : ?>
-                        <li class="nav-header">Transaksi</li>
-                        <li class="nav-item">
-                            <a href="<?= site_url('barangmasuk/data'); ?>" class="nav-link">
-                                <i class="nav-icon fa fa-arrow-circle-down text-primary"></i>
-                                <p class="text">Barang Masuk</p>
-                            </a>
-                        </li>
+                            <li class="nav-header">Transaksi</li>
+                            <li class="nav-item">
+                                <a href="<?= site_url('barangmasuk/data'); ?>" class="nav-link">
+                                    <i class="nav-icon fa fa-arrow-circle-down text-primary"></i>
+                                    <p class="text">Barang Masuk</p>
+                                </a>
+                            </li>
 
                         <?php endif; ?>
 
                         <?php if (session()->idlevel == 4) : ?>
-                        <li class="nav-header">Laporan</li>
-                        <li class="nav-item">
-                            <a href="<?= site_url('laporan/index'); ?>" class="nav-link">
-                                <i class="nav-icon fa fa-file text-warning"></i>
-                                <p class="text">Laporan</p>
-                            </a>
-                        </li>
+                            <li class="nav-header">Laporan</li>
+                            <li class="nav-item">
+                                <a href="<?= site_url('laporan/index'); ?>" class="nav-link">
+                                    <i class="nav-icon fa fa-file text-warning"></i>
+                                    <p class="text">Laporan</p>
+                                </a>
+                            </li>
 
                         <?php endif; ?>
                         <li class="nav-item">
@@ -264,12 +260,13 @@
 
 
     <!-- Bootstrap 4 -->
-    
+
     <script src="<?= base_url() ?>/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?= base_url() ?>/dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="<?= base_url() ?>/dist/js/demo.js"></script>
+    <?= $this->renderSection('script') ?>
 </body>
 
 </html>

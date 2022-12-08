@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Pembayaran Faktur</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Pembayaran Faktur Hutang</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -15,26 +15,46 @@
                     <input type="text" name="nofaktur" id="nofaktur" class="form-control" value="<?= $nofaktur; ?>" readonly>
                     <input type="hidden" name="tglfaktur" value="<?= $tglfaktur; ?>">
                     <input type="hidden" name="idpelanggan" value="<?= $idpelanggan; ?>">
+                    <input type="hidden" name="paymentmethod" value="<?= $paymentmethod; ?>">
                 </div>
                 <div class="form-group">
-                    <label for="">Total Harga</label>
+                    <label for="">Nama Pelanggan</label>
+                    <input type="text" name="namapelanggan" id="namapelanggan" class="form-control" value="<?= $namapelanggan; ?>" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="">Total Hutang</label>
                     <input type="text" name="totalbayar" id="totalbayar" class="form-control" value="<?= $totalharga; ?>" readonly>
                 </div>
+                <!-- <div class="form-group hidden"> -->
+                <!-- <label for="">Diskon (%)</label> -->
+                <input type="hidden" name="dispersen" id="dispersen" class="form-control" autocomplete="false">
+                <!-- </div> -->
+                <!-- <div class="form-group hidden"> -->
+                <!-- <label for="">Diskon (Rp)</label> -->
+                <input type="hidden" name="disuang" id="disuang" class="form-control" autocomplete="false">
+                <!-- </div> -->
+                <!-- <div class="form-group hidden"> -->
+                <!-- <label for="">Jumlah Uang</label> -->
+                <!-- <input type="hidden" name="jumlahuang" id="jumlahuang" class="form-control" autocomplete="false"> -->
+                <!-- <input type="hidden" value="0" name="jumlahuang" id="jumlahuang" class="form-control" autocomplete="false" readonly> -->
+                <!-- </div> -->
+                <!-- <div class="form-group hidden"> -->
+                <!-- <label for="">Sisa Uang</label> -->
+                <!-- <input type="hidden" name="sisauang" id="sisauang" class="form-control" readonly> -->
+                <input type="hidden" value="0" name="sisauang" id="sisauang" class="form-control" readonly>
+                <!-- </div> -->
+
                 <div class="form-group">
-                    <label for="">Diskon (%)</label>
-                    <input type="text" name="dispersen" id="dispersen" class="form-control" autocomplete="false">
+                    <label for="">Tempo Hutang</label>
+                    <select name="tempohutang" id="tempohutang" class="form-control" required>
+                        <option value="">-- Silakan Pilih Tempo Hutang</option>
+                        <option value="1">1 bulan</option>
+                        <option value="3">3 bulan</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="">Diskon (Rp)</label>
-                    <input type="text" name="disuang" id="disuang" class="form-control" autocomplete="false">
-                </div>
-                <div class="form-group">
-                    <label for="">Jumlah Uang</label>
-                    <input type="text" name="jumlahuang" id="jumlahuang" class="form-control" autocomplete="false">
-                </div>
-                <div class="form-group">
-                    <label for="">Sisa Uang</label>
-                    <input type="text" name="sisauang" id="sisauang" class="form-control" readonly>
+                    <label for="keterangan">Keterangan</label>
+                    <textarea name="keterangan" id="keterangan" class="form-control">Keterangan</textarea>
                 </div>
             </div>
             <div class="modal-footer">
@@ -117,7 +137,6 @@
 
         $('.frmpembayaran').submit(function(e) {
             e.preventDefault();
-
             $.ajax({
                 type: "post",
                 url: $(this).attr('action'),

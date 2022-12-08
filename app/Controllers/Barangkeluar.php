@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\HutangModel;
 use App\Models\Modelbarang;
 use App\Models\ModelBarangKeluar;
 use App\Models\ModelDataBarang;
@@ -230,15 +231,68 @@ class Barangkeluar extends BaseController
         echo json_encode($json);
     }
 
+    function modalPembayaranHutang()
+    {
+        $nofaktur = $this->request->getPost('nofaktur');
+        $tglfaktur = $this->request->getPost('tglfaktur');
+        $idpelanggan = $this->request->getPost('idpelanggan');
+        $namapelanggan = $this->request->getPost('namapelanggan');
+        $totalharga = $this->request->getPost('totalharga');
+        $paymentmethod = $this->request->getPost('paymentmethod');
+
+        $modelTemp = new ModelTempBarangKeluar();
+        $cekdata = $modelTemp->tampilDataTemp($nofaktur);
+
+        if ($cekdata->getNumRows() > 0) {
+            $data = [
+                'nofaktur' => $nofaktur,
+                'totalharga' => $totalharga,
+                'tglfaktur' =>  $tglfaktur,
+                'idpelanggan' => $idpelanggan,
+                'namapelanggan' => $namapelanggan,
+                'paymentmethod' => $paymentmethod
+            ];
+
+            $json = [
+                'data' => view('barangkeluar/modalpembayaranhutang', $data)
+            ];
+        } else {
+            $json = [
+                'error' => 'Maaf item belum ada'
+            ];
+        }
+        echo json_encode($json);
+    }
     function simpanPembayaran()
     {
         if ($this->request->isAJAX()) {
             $nofaktur = $this->request->getPost('nofaktur');
             $tglfaktur = $this->request->getPost('tglfaktur');
             $idpelanggan = $this->request->getPost('idpelanggan');
+            $namapelanggan = $this->request->getPost('namapelanggan');
             $totalbayar = str_replace(".", "", $this->request->getPost('totalbayar'));
             $jumlahuang = str_replace(".", "", $this->request->getPost('jumlahuang'));
             $sisauang = str_replace(".", "", $this->request->getPost('sisauang'));
+            $keterangan = $this->request->getPost('keterangan');
+
+            if ($this->request->getPost('paymentmethod') == 'K') {
+                $paymentmethod = $this->request->getPost('paymentmethod');
+                $tempohutang = $this->request->getPost('tempohutang');
+
+                $hutangModel = new HutangModel();
+                $hutangModel->save([
+                    'faktur' => $nofaktur,
+                    'tanggal' => $tglfaktur,
+                    'pelid' => $idpelanggan,
+                    'pelnama' => $namapelanggan,
+                    'nominal' => $totalbayar,
+                    'tempo_hutang' => $tempohutang,
+                    'ket' => $keterangan
+                ]);
+            } else {
+                $paymentmethod = 'C';
+                $tempohutang = NULL;
+            }
 
             $modelBarangKeluar = new ModelBarangKeluar();
             //Simpan ke table barang keluar
@@ -249,9 +303,8 @@ class Barangkeluar extends BaseController
                 'totalharga' => $totalbayar,
                 'jumlahuang' => $jumlahuang,
                 'sisauang' => $sisauang,
-                'payment_method' => 'C'
+                'payment_method' => $paymentmethod
             ]);
-
             $modelTemp = new ModelTempBarangKeluar();
             $dataTemp = $modelTemp->getWhere(['detfaktur' => $nofaktur]);
 
@@ -513,7 +566,11 @@ class Barangkeluar extends BaseController
                 if ($list->transaction_status == 'settlement') {
                     $tombolHapus = '';
                 } else {
-                    $tombolHapus = "<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"hapus('" . $list->faktur . "')\"><i class=\"fa fa-trash-alt\"></i></button>";
+                    if ($_SESSION['idlevel'] == 1) {
+                        $tombolHapus =  "<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"hapus('" . $list->faktur . "')\"><i class=\"fa fa-trash-alt\"></i></button>";
+                    } else {
+                        $tombolHapus = '';
+                    }
                 }
 
                 if ($list->payment_method == 'M') {
@@ -525,10 +582,11 @@ class Barangkeluar extends BaseController
 
                 $row[] = $no;
                 $row[] = $list->faktur;
-                $row[] = $list->tglfaktur;
+                // $row[] = $list->tglfaktur;
+                $row[] = date('d-m-Y', strtotime($list->tglfaktur));
                 $row[] = $list->pelnama;
 
-                $row[] = ($list->payment_method == 'M') ? "<span class=\"badge badge-info\">Midtrans</span>" : "<span class=\"badge bg-purple\">Cash</span>";
+                $row[] = ($list->payment_method == 'M') ? "<span class=\"badge badge-info\">Midtrans</span>" : ($list->payment_method == 'C' ? "<span class=\"badge bg-purple\">Cash</span>" : "<span class=\"badge bg-warning\">Kredit</span>");
 
                 // Menampilkan status transaksi
 
@@ -561,31 +619,38 @@ class Barangkeluar extends BaseController
     function hapusTransaksi()
     {
         if ($this->request->isAJAX()) {
-            // Set your Merchant Server Key
-            \Midtrans\Config::$serverKey = 'SB-Mid-server--cKu7MXkK5fOsRMJ_0uaMDmV';
-            // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-            \Midtrans\Config::$isProduction = false;
-            // Set sanitization on (default)
-            \Midtrans\Config::$isSanitized = true;
-            // Set 3DS transaction for credit card to true
-            \Midtrans\Config::$is3ds = true;
+            if ($_SESSION['idlevel'] == 1) {
+                // Set your Merchant Server Key
+                \Midtrans\Config::$serverKey = 'SB-Mid-server--cKu7MXkK5fOsRMJ_0uaMDmV';
+                // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+                \Midtrans\Config::$isProduction = false;
+                // Set sanitization on (default)
+                \Midtrans\Config::$isSanitized = true;
+                // Set 3DS transaction for credit card to true
+                \Midtrans\Config::$is3ds = true;
 
-            $faktur = $this->request->getPost('faktur');
+                $faktur = $this->request->getPost('faktur');
 
-            $modelBarangKeluar = new ModelBarangKeluar();
-            $dataBarangKeluar = $modelBarangKeluar->find($faktur);
+                $modelBarangKeluar = new ModelBarangKeluar();
+                $dataBarangKeluar = $modelBarangKeluar->find($faktur);
 
-            $db = \Config\Database::connect();
+                $db = \Config\Database::connect();
 
-            \Midtrans\Transaction::cancel($dataBarangKeluar['order_id']);
+                \Midtrans\Transaction::cancel($dataBarangKeluar['order_id']);
 
-            $db->table('detail_barangkeluar')->delete(['detfaktur' => $faktur]);
-            $modelBarangKeluar->delete($faktur);
+                $db->table('detail_barangkeluar')->delete(['detfaktur' => $faktur]);
+                $modelBarangKeluar->delete($faktur);
 
-            $json = [
-                'sukses' => 'Transaksi berhasil dihapus'
-            ];
-            echo json_encode($json);
+                $json = [
+                    'sukses' => 'Transaksi berhasil dihapus'
+                ];
+                echo json_encode($json);
+            } else {
+                $json = [
+                    'error' => 'Anda tidak diperbolehkan melakukan operasi ini.'
+                ];
+                echo json_encode($json);
+            }
         }
     }
 
@@ -594,8 +659,14 @@ class Barangkeluar extends BaseController
         $modelBarangKeluar = new ModelBarangKeluar();
         $modelPelanggan = new ModelPelanggan();
         $rowData = $modelBarangKeluar->find($faktur);
-        $rowPelanggan = $modelPelanggan->find($rowData['idpel']);
 
+        // Tambahan Code 
+        if ((int)$rowData['idpel'] !== 0) {
+            $rowPelanggan = $modelPelanggan->find($rowData['idpel']);
+        } else {
+            $rowPelanggan['pelnama'] = "Cash";
+        }
+        // 
         $data = [
             'nofaktur' => $faktur,
             'tanggal' => $rowData['tglfaktur'],

@@ -1,7 +1,7 @@
 <?= $this->extend('main/layout') ?>
 
 <?= $this->section('judul') ?>
-Laporan Barang Masuk
+Laporan Laba
 <?= $this->endSection('judul') ?>
 
 <?= $this->section('subjudul') ?>
@@ -21,7 +21,7 @@ Laporan Barang Masuk
             <div class="card-header">Pilih Periode</div>
             <div class="card-body bg-white">
                 <p class="card-text">
-                    <?= form_open('laporan/cetak-barang-masuk-periode', ['target' => '_blank']) ?>
+                    <?= form_open('laporan/cetak-keuntungan-periode', ['target' => '_blank']) ?>
                 <div class="form-group">
                     <label for="">Tanggal Awal</label>
                     <input type="date" name="tglawal" class="form-control" required>
@@ -48,11 +48,16 @@ Laporan Barang Masuk
             <div class="card-header">Laporan Grafik</div>
             <div class="card-body bg-white">
                 <div class="form-group">
-                    <label for="">Pilih Bulan</label>
+                    <label for="">Pilih Periode</label>
+                    <!-- <select name="periode" id="periode" class="form-control"> -->
+                    <!-- <option value="daily">Daily</option> -->
+                    <!-- <option value="monthly">Monthly</option> -->
+                    <!-- <option value="yearly">Yearly</option> -->
+                    <!-- </select> -->
                     <input type="month" class="form-control" id="bulan" value="<?= date('Y-m') ?>">
                     <!-- <button type="button" class="btn btn-sm btn-primary" id="tombolTampil">
                         Tampil
-                    </button> --> 
+                    </button> -->
                 </div>
                 <div class="viewTampilGrafik">
 
@@ -63,40 +68,60 @@ Laporan Barang Masuk
 </div>
 
 <script>
-function tampilGrafik() {
-    $.ajax({
-        type: "post",
-        url: "/laporan/tampilGrafikBarangMasuk",
-        data: {
-            bulan: $('#bulan').val()
-        },
-        dataType: "json",
-        beforeSend: function() {
-            $('.viewTampilGrafik').html('<i class="fa fa-spin fa-spinner"></i>');
-        },
-        success: function(response) {
-            if (response.data) {
-                $('.viewTampilGrafik').html(response.data);
+    function tampilGrafik() {
+        $.ajax({
+            type: "post",
+            url: "/laporan/tampilGrafikBarangMasuk",
+            data: {
+                bulan: $('#bulan').val()
+            },
+            dataType: "json",
+            beforeSend: function() {
+                $('.viewTampilGrafik').html('<i class="fa fa-spin fa-spinner"></i>');
+            },
+            success: function(response) {
+                if (response.data) {
+                    $('.viewTampilGrafik').html(response.data);
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + '\n' + thrownError);
             }
-        },
-        error: function(xhr, ajaxOptions, thrownError) {
-            alert(xhr.status + '\n' + thrownError);
-        }
 
+        });
+    }
+
+    function untungGrafik() {
+        $.ajax({
+            type: "post",
+            url: "/laporan/tampilGrafikUntung",
+            data: {
+                bulan: $('#bulan').val()
+            },
+            dataType: "json",
+            beforeSend: function() {
+                $('.viewTampilGrafik').html('<i class="fa fa-spin fa-spinner"></i>');
+                console.log($('#bulan'))
+            },
+            success: function(response) {
+                if (response.data) {
+                    $('.viewTampilGrafik').html(response.data);
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + '\n' + thrownError);
+            }
+
+        });
+    }
+
+    $(document).ready(function() {
+        untungGrafik();
+
+        $('#bulan').change(function() {
+            // console.log($('#bulan').val())
+            untungGrafik();
+        })
     });
-}
-
-$(document).ready(function() {
-    tampilGrafik();
-
-    // $('#tombolTampil').click(function(e) {
-    //     e.preventDefault();
-    //     tampilGrafik();
-    // });
-    $('#bulan').change(function() {
-        // console.log($('#bulan').val())
-        tampilGrafik();
-    })
-});
 </script>
 <?= $this->endSection('isi') ?>

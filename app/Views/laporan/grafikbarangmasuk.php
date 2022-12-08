@@ -8,7 +8,8 @@ $tanggal = "";
 $total = "";
 
 foreach ($grafik as $row) :
-    $tgl = $row->tgl;
+    // $tgl = $row->tgl;
+    $tgl = date('d-m-Y', strtotime($row->tgl));
     $tanggal .= "'$tgl'" . ",";
 
     $totalHarga = $row->totalharga;
@@ -25,7 +26,8 @@ var chart = new Chart(ctx, {
         labels: [<?= $tanggal ?>],
         datasets: [{
             label: 'Total Harga',
-            backgroundColor: ['rgb(255,99,132)', 'rgb(14,99,132)', 'rgb(14,99,13)'],
+            // backgroundColor: ['rgb(255,99,132)', 'rgb(14,99,132)', 'rgb(14,99,13)'],
+            backgroundColor: 'rgb(14,99,132)',
             borderColor: ['rgb(255,991,130)'],
             data: [<?= $total ?>]
         }]
