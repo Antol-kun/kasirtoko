@@ -119,7 +119,7 @@
                             <li class="nav-item">
                                 <a href="<?= site_url('barangkeluar/input'); ?>" class="nav-link">
                                     <i class="nav-icon fa fa-arrow-circle-up text-warning"></i>
-                                    <p class="text">Input Barang Keluar</p>
+                                    <p class="text">Kasir</p>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -168,7 +168,7 @@
                             <li class="nav-item">
                                 <a href="<?= site_url('barangkeluar/input'); ?>" class="nav-link">
                                     <i class="nav-icon fa fa-arrow-circle-up text-warning"></i>
-                                    <p class="text">Input Barang Keluar</p>
+                                    <p class="text">Kasir</p>
                                 </a>
                             </li>
                         <?php endif; ?>
