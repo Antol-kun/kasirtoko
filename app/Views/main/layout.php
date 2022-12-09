@@ -117,6 +117,12 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a href="<?= site_url('barangkeluar/input'); ?>" class="nav-link">
+                                    <i class="nav-icon fa fa-arrow-circle-up text-warning"></i>
+                                    <p class="text">Input Barang Keluar</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="<?= site_url('hutang/index'); ?>" class="nav-link">
                                     <i class="nav-icon fa fa-money-bill text-success"></i>
                                     <p class="text">Hutang</p>
@@ -158,6 +164,13 @@
                                     <p class="text">Barang Keluar</p>
                                 </a>
                             </li>
+
+                            <li class="nav-item">
+                                <a href="<?= site_url('barangkeluar/input'); ?>" class="nav-link">
+                                    <i class="nav-icon fa fa-arrow-circle-up text-warning"></i>
+                                    <p class="text">Input Barang Keluar</p>
+                                </a>
+                            </li>
                         <?php endif; ?>
 
                         <?php if (session()->idlevel == 3) : ?>
@@ -184,7 +197,7 @@
                         <li class="nav-item">
                             <a href="<?= site_url('login/keluar'); ?>" class="nav-link">
                                 <i class="nav-icon fa fa-sign-out-alt text-primary"></i>
-                                <p class="text">logout</p>
+                                <p class="text">Logout</p>
                             </a>
                         </li>
                     </ul>
