@@ -6,9 +6,9 @@ Data Transaksi Barang Keluar
 
 <?= $this->section('subjudul') ?>
 
-<button type="button" class="btn btn-sm btn-primary" onclick="location.href=('<?= base_url()?>/barangkeluar/input')">
+<!-- <button type="button" class="btn btn-sm btn-primary" onclick="location.href=('<?= base_url()?>/barangkeluar/input')">
     <i class="fa fa-plus-circle"></i> Input Transaksi
-</button>
+</button> -->
 
 <?= $this->endSection('subjudul') ?>
 
