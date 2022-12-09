@@ -6,7 +6,7 @@ Input Transaksi Barang Keluar
 
 <?= $this->section('subjudul') ?>
 
-<button type="button" class="btn btn-sm btn-warning" onclick="location.href=('/barangkeluar/data')">
+<button type="button" class="btn btn-sm btn-warning" onclick="location.href=('<?= base_url()?>/barangkeluar/data')">
     <i class="fa fa-backward"></i> Kembali
 </button>
 
@@ -43,9 +43,9 @@ Input Transaksi Barang Keluar
                 <input type="text" class="form-control" placeholder="Nama Pelanggan" name="namapelanggan" id="namapelanggan" readonly>
                 <input type="hidden" name="idpelanggan" id="idpelanggan">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-primary" type="button" id="tombolCariPelanggan" title="Cari pelanggan">
+                    <!-- <button class="btn btn-outline-primary" type="button" id="tombolCariPelanggan" title="Cari pelanggan">
                         <i class="fa fa-search"></i>
-                    </button>
+                    </button> -->
                     <button class="btn btn-outline-success" type="button" id="tombolTambahPelanggan" title="Tambah Pelanggan">
                         <i class="fa fa-plus-square"></i>
                     </button>
@@ -119,7 +119,7 @@ Input Transaksi Barang Keluar
     $('#payment_method').change(function() {
         if ($('#payment_method').val() == 'K') {
             $.ajax({
-                url: "/pelanggan/modalData",
+                url: "<?= base_url()?>/pelanggan/modalData",
                 dataType: "json",
                 success: function(response) {
                     if (response.data) {
@@ -157,7 +157,7 @@ Input Transaksi Barang Keluar
         } else {
             $.ajax({
                 type: "post",
-                url: "/barangkeluar/simpanItem",
+                url: "<?= base_url()?>/barangkeluar/simpanItem",
                 data: {
                     nofaktur: nofaktur,
                     kodebarang: kodebarang,
@@ -192,7 +192,7 @@ Input Transaksi Barang Keluar
         } else {
             $.ajax({
                 type: "post",
-                url: "/barangkeluar/ambilDataBarang",
+                url: "<?= base_url()?>/barangkeluar/ambilDataBarang",
                 data: {
                     kodebarang: kodebarang
                 },
@@ -223,7 +223,7 @@ Input Transaksi Barang Keluar
         let faktur = $('#nofaktur').val();
         $.ajax({
             type: "post",
-            url: "/barangkeluar/tampilDataTemp",
+            url: "<?= base_url()?>/barangkeluar/tampilDataTemp",
             data: {
                 [csrfToken]: csrfHash,
                 nofaktur: faktur
@@ -248,7 +248,7 @@ Input Transaksi Barang Keluar
 
         $.ajax({
             type: "post",
-            url: "/barangkeluar/buatNoFaktur",
+            url: "<?= base_url()?>/barangkeluar/buatNoFaktur",
             data: {
                 tanggal: tanggal
             },
@@ -271,7 +271,7 @@ Input Transaksi Barang Keluar
         $('#tombolTambahPelanggan').click(function(e) {
             e.preventDefault();
             $.ajax({
-                url: "/pelanggan/formtambah",
+                url: "<?= base_url()?>/pelanggan/formtambah",
                 dataType: "json",
                 success: function(response) {
                     if (response.data) {
@@ -288,7 +288,7 @@ Input Transaksi Barang Keluar
         $('#tombolCariPelanggan').click(function(e) {
             e.preventDefault();
             $.ajax({
-                url: "/pelanggan/modalData",
+                url: "<?= base_url()?>/pelanggan/modalData",
                 dataType: "json",
                 success: function(response) {
                     if (response.data) {
@@ -317,7 +317,7 @@ Input Transaksi Barang Keluar
         $('#tombolCariBarang').click(function(e) {
             e.preventDefault();
             $.ajax({
-                url: "/barangkeluar/modalCariBarang",
+                url: "<?= base_url()?>/barangkeluar/modalCariBarang",
                 dataType: "json",
                 success: function(response) {
                     if (response.data) {
@@ -343,7 +343,7 @@ Input Transaksi Barang Keluar
             $.ajax({
                 type: "post",
                 // url: "/barangkeluar/modalPembayaran",
-                url: "/barangkeluar/" + url,
+                url: "<?= base_url()?>/barangkeluar/" + url,
                 data: {
                     nofaktur: $('#nofaktur').val(),
                     tglfaktur: $('#tglfaktur').val(),
@@ -372,7 +372,7 @@ Input Transaksi Barang Keluar
             e.preventDefault();
             $.ajax({
                 type: "post",
-                url: "/barangkeluar/payMidtrans",
+                url: "<?= base_url()?>/barangkeluar/payMidtrans",
                 data: {
                     nofaktur: $('#nofaktur').val(),
                     tglfaktur: $('#tglfaktur').val(),
@@ -392,7 +392,7 @@ Input Transaksi Barang Keluar
 
                                 $.ajax({
                                     type: "post",
-                                    url: "/barangkeluar/finishMidtrans",
+                                    url: "<?= base_url()?>/barangkeluar/finishMidtrans",
                                     data: {
                                         nofaktur: response.nofaktur,
                                         tglfaktur: response.tglfaktur,
@@ -423,7 +423,7 @@ Input Transaksi Barang Keluar
 
                                 $.ajax({
                                     type: "post",
-                                    url: "/barangkeluar/finishMidtrans",
+                                    url: "<?= base_url()?>/barangkeluar/finishMidtrans",
                                     data: {
                                         nofaktur: response.nofaktur,
                                         tglfaktur: response.tglfaktur,
@@ -452,7 +452,7 @@ Input Transaksi Barang Keluar
 
                                 $.ajax({
                                     type: "post",
-                                    url: "/barangkeluar/finishMidtrans",
+                                    url: "<?= base_url()?>/barangkeluar/finishMidtrans",
                                     data: {
                                         nofaktur: response.nofaktur,
                                         tglfaktur: response.tglfaktur,

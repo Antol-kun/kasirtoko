@@ -6,7 +6,7 @@ Input Barang Masuk
 
 <?= $this->section('subjudul') ?>
 
-<button type="button" class="btn btn-sm btn-warning" onclick="location.href=('/barangmasuk/data')">
+<button type="button" class="btn btn-sm btn-warning" onclick="location.href=('<?= base_url()?>/barangmasuk/data')">
     <i class="fa fa-backward"></i> Kembali
 </button>
 
@@ -87,7 +87,7 @@ function dataTemp() {
 
     $.ajax({
         type: "post",
-        url: "/barangmasuk/dataTemp",
+        url: "<?= base_url()?>/barangmasuk/dataTemp",
         data: {
             faktur: faktur
         },
@@ -118,7 +118,7 @@ function ambilDataBarang() {
 
     $.ajax({
         type: "post",
-        url: "/barangmasuk/ambilDataBarang",
+        url: "<?= base_url()?>/barangmasuk/ambilDataBarang",
         data: {
             kodebarang: kodebarang
         },
@@ -175,7 +175,7 @@ $(document).ready(function() {
         } else {
             $.ajax({
                 type: "post",
-                url: "/barangmasuk/simpanTemp",
+                url: "<?= base_url()?>/barangmasuk/simpanTemp",
                 data: {
                     faktur: faktur,
                     kodebarang: kodebarang,
@@ -206,7 +206,7 @@ $(document).ready(function() {
     $('#tombolCariBarang').click(function(e) {
         e.preventDefault();
         $.ajax({
-            url: "/barangmasuk/cariDataBarang",
+            url: "<?= base_url()?>/barangmasuk/cariDataBarang",
             dataType: "json",
             success: function(response) {
                 if (response.data) {
@@ -243,7 +243,7 @@ $(document).ready(function() {
                 if (result.isConfirmed) {
                     $.ajax({
                         type: "post",
-                        url: "/barangmasuk/selesaiTransaksi",
+                        url: "<?= base_url()?>/barangmasuk/selesaiTransaksi",
                         data: {
                             faktur: faktur,
                             tglfaktur: $('#tglfaktur').val()

@@ -6,7 +6,7 @@ Edit Barang Masuk
 
 <?= $this->section('subjudul') ?>
 
-<button type="button" class="btn btn-sm btn-warning" onclick="location.href=('/barangmasuk/data')">
+<button type="button" class="btn btn-sm btn-warning" onclick="location.href=('<?= base_url()?>/barangmasuk/data')">
     <i class="fa fa-backward"></i> Kembali
 </button>
 
@@ -96,7 +96,7 @@ function dataDetail() {
 
     $.ajax({
         type: "post",
-        url: "/barangmasuk/dataDetail",
+        url: "<?= base_url()?>/barangmasuk/dataDetail",
         data: {
             faktur: faktur
         },
@@ -128,7 +128,7 @@ function ambilDataBarang() {
 
     $.ajax({
         type: "post",
-        url: "/barangmasuk/ambilDataBarang",
+        url: "<?= base_url()?>/barangmasuk/ambilDataBarang",
         data: {
             kodebarang: kodebarang
         },
@@ -187,7 +187,7 @@ $(document).ready(function() {
         } else {
             $.ajax({
                 type: "post",
-                url: "/barangmasuk/simpanDetail",
+                url: "<?= base_url()?>/barangmasuk/simpanDetail",
                 data: {
                     faktur: faktur,
                     kodebarang: kodebarang,
@@ -219,7 +219,7 @@ $(document).ready(function() {
         let hargajual = $('#hargajual').val();
         $.ajax({
             type: "post",
-            url: "/barangmasuk/updateItem",
+            url: "<?= base_url()?>/barangmasuk/updateItem",
             data: {
                 iddetail: $('#iddetail').val(),
                 faktur: faktur,
@@ -245,7 +245,7 @@ $(document).ready(function() {
     $('#tombolCariBarang').click(function(e) {
         e.preventDefault();
         $.ajax({
-            url: "/barangmasuk/cariDataBarang",
+            url: "<?= base_url()?>/barangmasuk/cariDataBarang",
             dataType: "json",
             success: function(response) {
                 if (response.data) {

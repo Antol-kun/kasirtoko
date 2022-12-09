@@ -6,7 +6,7 @@ Laporan Barang Masuk
 
 <?= $this->section('subjudul') ?>
 
-<button type="button" class="btn btn-warning" onclick="window.location=('/laporan/index')">
+<button type="button" class="btn btn-warning" onclick="window.location=('<?= base_url() ?>/laporan/index')">
     Kembali
 </button>
 
@@ -66,7 +66,7 @@ Laporan Barang Masuk
 function tampilGrafik() {
     $.ajax({
         type: "post",
-        url: "/laporan/tampilGrafikBarangMasuk",
+        url: "<?= base_url() ?>/laporan/tampilGrafikBarangMasuk",
         data: {
             bulan: $('#bulan').val()
         },

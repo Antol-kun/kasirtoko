@@ -105,7 +105,7 @@ $(document).ready(function() {
             if (result.isConfirmed) {
                 $.ajax({
                     type: "post",
-                    url: "/users/updateStatus",
+                    url: "<?= base_url()?>/users/updateStatus",
                     data: {
                         iduser: $('#iduser').val()
                     },
@@ -135,7 +135,7 @@ $(document).ready(function() {
             if (result.isConfirmed) {
                 $.ajax({
                     type: "post",
-                    url: "/users/hapusUser",
+                    url: "<?= base_url()?>/users/hapusUser",
                     data: {
                         iduser: $('#iduser').val()
                     },

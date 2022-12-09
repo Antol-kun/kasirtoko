@@ -8,7 +8,7 @@ Manajemen Data Kategori
 
 <?= form_button('', '<i class="fa fa-plus-circle"></i> Tambah Data', [
     'class' => 'btn btn-primary',
-    'onclick' => "location.href=('" . site_url('kategori/formtambah') . "')"
+    'onclick' => "location.href=('" . site_url('/kategori/formtambah') . "')"
 ]) ?>
 
 <?= $this->endSection('subjudul') ?>
@@ -17,7 +17,7 @@ Manajemen Data Kategori
 <?= $this->section('isi') ?>
 
 <?= session()->getFlashdata('sukses'); ?>
-<?= form_open('kategori/index') ?>
+<?= form_open('/kategori/index') ?>
 <div class="input-group mb-3">
     <input type="text" class="form-control" placeholder="Cari data kategori" aria-label="Recipient's username"
         aria-describedby="button-addon2" name="cari" value="<?= $cari; ?>">
@@ -51,7 +51,7 @@ Manajemen Data Kategori
                     <i class="fa fa-edit"></i>
                 </button>
 
-                <form method="POST" action="/kategori/hapus/<?= $row['katid'] ?>" style="display:inline;"
+                <form method="POST" action="<?= base_url()?>/kategori/hapus/<?= $row['katid'] ?>" style="display:inline;"
                     onsubmit="return hapus();">
                     <input type="hidden" value="DELETE" name="_method">
 
@@ -73,7 +73,7 @@ Manajemen Data Kategori
 
 <script>
 function edit(id) {
-    window.location = ('/kategori/formedit/' + id);
+    window.location = ('<?= base_url()?>/kategori/formedit/' + id);
 }
 
 function hapus() {

@@ -6,7 +6,7 @@ Edit Transaksi Barang Keluar
 
 <?= $this->section('subjudul') ?>
 
-<button type="button" class="btn btn-sm btn-warning" onclick="location.href=('/barangkeluar/data')">
+<button type="button" class="btn btn-sm btn-warning" onclick="location.href=('<?= base_url()?>/barangkeluar/data')">
     <i class="fa fa-backward"></i> Kembali
 </button>
 
@@ -110,7 +110,7 @@ Edit Transaksi Barang Keluar
         } else {
             $.ajax({
                 type: "post",
-                url: "/barangkeluar/ambilDataBarang",
+                url: "<?= base_url()?>/barangkeluar/ambilDataBarang",
                 data: {
                     kodebarang: kodebarang
                 },
@@ -141,7 +141,7 @@ Edit Transaksi Barang Keluar
         let nofaktur = $('#nofaktur').val();
         $.ajax({
             type: "post",
-            url: "/barangkeluar/ambilTotalHarga",
+            url: "<?= base_url()?>/barangkeluar/ambilTotalHarga",
             data: {
                 nofaktur: nofaktur
             },
@@ -167,7 +167,7 @@ Edit Transaksi Barang Keluar
         let faktur = $('#nofaktur').val();
         $.ajax({
             type: "post",
-            url: "/barangkeluar/tampilDataDetail",
+            url: "<?= base_url()?>/barangkeluar/tampilDataDetail",
             data: {
                 nofaktur: faktur
             },
@@ -199,7 +199,7 @@ Edit Transaksi Barang Keluar
         } else {
             $.ajax({
                 type: "post",
-                url: "/barangkeluar/simpanItemDetail",
+                url: "<?= base_url()?>/barangkeluar/simpanItemDetail",
                 data: {
                     nofaktur: nofaktur,
                     kodebarang: kodebarang,
@@ -238,7 +238,7 @@ Edit Transaksi Barang Keluar
         $('#tombolCariBarang').click(function(e) {
             e.preventDefault();
             $.ajax({
-                url: "/barangkeluar/modalCariBarang",
+                url: "<?= base_url()?>/barangkeluar/modalCariBarang",
                 dataType: "json",
                 success: function(response) {
                     if (response.data) {
@@ -256,7 +256,7 @@ Edit Transaksi Barang Keluar
             e.preventDefault();
             $.ajax({
                 type: "post",
-                url: "/barangkeluar/editItem",
+                url: "<?= base_url()?>/barangkeluar/editItem",
                 data: {
                     iddetail: $('#iddetail').val(),
                     jml: $('#jml').val()

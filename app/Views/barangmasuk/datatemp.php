@@ -56,7 +56,7 @@ function hapusItem(id) {
         if (result.isConfirmed) {
             $.ajax({
                 type: "post",
-                url: "/barangmasuk/hapus",
+                url: "<?= base_url()?>/barangmasuk/hapus",
                 data: {
                     id: id
                 },

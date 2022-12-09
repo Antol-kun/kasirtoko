@@ -6,7 +6,7 @@ Form Tambah Barang
 
 <?= $this->section('subjudul') ?>
 
-<button type="button" class="btn btn-sm btn-warning" onclick="location.href=('/barang/index')">
+<button type="button" class="btn btn-sm btn-warning" onclick="location.href=('<?= base_url()?>/barang/index')">
     <i class="fa fa-backward"></i> Kembali
 </button>
 

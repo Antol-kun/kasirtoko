@@ -55,7 +55,7 @@
 function hapusItem(id) {
     Swal.fire({
         title: 'Hapus Item ?',
-        text: "Yakin item ini dihapus ?",
+        text: "Yakin item ini dihapus AAAAA?",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -65,7 +65,7 @@ function hapusItem(id) {
         if (result.isConfirmed) {
             $.ajax({
                 type: "post",
-                url: "/barangkeluar/hapusItemDetail",
+                url: "<?= base_url()?>/barangkeluar/hapusItemDetail",
                 data: {
                     id: id
                 },

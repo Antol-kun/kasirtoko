@@ -12,7 +12,7 @@
     <table border="0" style="text-align: center; width: 100%;">
         <tr>
             <td colspan="2">
-                <h3 style="height: 2px;">Toko Tolo</h3>
+                <h3 style="height: 2px;">TOKO PANMAS JAYA</h3>
                 <h5 style="height: 2px;">Jl. Kemajuan, Telp:088885545</h5>
                 <hr style="border: none; border-top: 1px solid #000;">
             </td>

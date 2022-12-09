@@ -6,7 +6,7 @@ Data Transaksi Barang Keluar
 
 <?= $this->section('subjudul') ?>
 
-<button type="button" class="btn btn-sm btn-primary" onclick="location.href=('/barangkeluar/input')">
+<button type="button" class="btn btn-sm btn-primary" onclick="location.href=('<?= base_url()?>/barangkeluar/input')">
     <i class="fa fa-plus-circle"></i> Input Transaksi
 </button>
 
@@ -64,7 +64,7 @@ Data Transaksi Barang Keluar
     let csrfHash = '<?= csrf_hash() ?>';
 
     function cektransaksi(faktur) {
-        window.location.href = '/barangkeluar/cektransaksi/' + faktur;
+        window.location.href = '<?= base_url()?>/barangkeluar/cektransaksi/' + faktur;
     }
 
     function listDataBarangKeluar() {
@@ -74,7 +74,7 @@ Data Transaksi Barang Keluar
             "serverSide": true,
             "order": [],
             "ajax": {
-                "url": "/barangkeluar/listData",
+                "url": "<?= base_url()?>/barangkeluar/listData",
                 "type": "POST",
                 "data": {
                     [csrfToken]: csrfHash,
@@ -99,7 +99,7 @@ Data Transaksi Barang Keluar
     });
 
     function cetak(faktur) {
-        let windowCetak = window.open('/barangkeluar/cetakfaktur/' + faktur,
+        let windowCetak = window.open('<?= base_url()?>/barangkeluar/cetakfaktur/' + faktur,
             "Cetak Faktur Barang Keluar",
             "width=200,height=400");
 
@@ -109,7 +109,7 @@ Data Transaksi Barang Keluar
     function hapus(faktur) {
         Swal.fire({
             title: 'Hapus Transaksi',
-            text: "Yakin dihapus ?",
+            text: "Yakin dihapus?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -119,7 +119,7 @@ Data Transaksi Barang Keluar
             if (result.isConfirmed) {
                 $.ajax({
                     type: "post",
-                    url: "/barangkeluar/hapusTransaksi",
+                    url: "<?= base_url()?>/barangkeluar/hapusTransaksi",
                     data: {
                         [csrfToken]: csrfHash,
                         faktur: faktur
@@ -127,6 +127,11 @@ Data Transaksi Barang Keluar
                     dataType: "json",
                     success: function(response) {
                         if (response.sukses) {
+                            Swal.fire({
+                                title: response.sukses,
+                                text: response.sukses,
+                                icon: 'success',
+                            })
                             listDataBarangKeluar();
                         } else {
                             alert(response.error);
@@ -141,7 +146,7 @@ Data Transaksi Barang Keluar
     }
 
     function edit(faktur) {
-        window.location.href = ('/barangkeluar/edit/') + faktur;
+        window.location.href = ('<?= base_url()?>/barangkeluar/edit/') + faktur;
     }
 </script>
 

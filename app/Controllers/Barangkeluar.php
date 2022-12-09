@@ -618,25 +618,26 @@ class Barangkeluar extends BaseController
 
     function hapusTransaksi()
     {
+        // var_dump($this->request);die;
         if ($this->request->isAJAX()) {
             if ($_SESSION['idlevel'] == 1) {
                 // Set your Merchant Server Key
-                \Midtrans\Config::$serverKey = 'SB-Mid-server--cKu7MXkK5fOsRMJ_0uaMDmV';
-                // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-                \Midtrans\Config::$isProduction = false;
-                // Set sanitization on (default)
-                \Midtrans\Config::$isSanitized = true;
-                // Set 3DS transaction for credit card to true
-                \Midtrans\Config::$is3ds = true;
+                // \Midtrans\Config::$serverKey = 'SB-Mid-server--cKu7MXkK5fOsRMJ_0uaMDmV';
+                // // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+                // \Midtrans\Config::$isProduction = false;
+                // // Set sanitization on (default)
+                // \Midtrans\Config::$isSanitized = true;
+                // // Set 3DS transaction for credit card to true
+                // \Midtrans\Config::$is3ds = true;
 
                 $faktur = $this->request->getPost('faktur');
 
                 $modelBarangKeluar = new ModelBarangKeluar();
-                $dataBarangKeluar = $modelBarangKeluar->find($faktur);
+                // $dataBarangKeluar = $modelBarangKeluar->find($faktur);
 
                 $db = \Config\Database::connect();
 
-                \Midtrans\Transaction::cancel($dataBarangKeluar['order_id']);
+                // \Midtrans\Transaction::cancel($dataBarangKeluar['order_id']);
 
                 $db->table('detail_barangkeluar')->delete(['detfaktur' => $faktur]);
                 $modelBarangKeluar->delete($faktur);

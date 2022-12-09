@@ -6,7 +6,7 @@ Cek Transaksi Status Midtrans
 
 <?= $this->section('subjudul') ?>
 
-<button type="button" class="btn btn-sm btn-warning" onclick="location.href=('/barangkeluar/data')">
+<button type="button" class="btn btn-sm btn-warning" onclick="location.href=('<?= base_url()?>/barangkeluar/data')">
     <i class="fa fa-backward"></i> Kembali
 </button>
 

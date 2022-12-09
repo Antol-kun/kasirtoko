@@ -6,7 +6,7 @@ Manajemen Data Barang
 
 <?= $this->section('subjudul') ?>
 
-<button type="button" class="btn btn-sm btn-primary" onclick="location.href=('/barang/tambah')">
+<button type="button" class="btn btn-sm btn-primary" onclick="location.href=('<?= base_url()?>/barang/tambah')">
     <i class="fa fa-plus-circle"></i> Tambah Barang
 </button>
 
@@ -67,7 +67,7 @@ Manajemen Data Barang
                     <i class="fa fa-edit"></i>
                 </button>
 
-                <form method="POST" action="/barang/hapus/<?= $row['brgkode'] ?>" style="display:inline;"
+                <form method="POST" action="<?= base_url()?>/barang/hapus/<?= $row['brgkode'] ?>" style="display:inline;"
                     onsubmit="return hapus();">
                     <input type="hidden" value="DELETE" name="_method">
 
@@ -87,7 +87,7 @@ Manajemen Data Barang
 </div>
 <script>
 function edit(kode) {
-    window.location.href = ('/barang/edit/' + kode);
+    window.location.href = ('<?= base_url()?>/barang/edit/' + kode);
 }
 
 function hapus() {

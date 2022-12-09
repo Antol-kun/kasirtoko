@@ -56,7 +56,7 @@ function listDataBarang() {
         "serverSide": true,
         "order": [],
         "ajax": {
-            "url": "/barangkeluar/listDataBarang",
+            "url": "<?= base_url()?>/barangkeluar/listDataBarang",
             "type": "POST",
         },
         "columnDefs": [{

@@ -6,7 +6,7 @@ Laporan Laba
 
 <?= $this->section('subjudul') ?>
 
-<button type="button" class="btn btn-warning" onclick="window.location=('/laporan/index')">
+<button type="button" class="btn btn-warning" onclick="window.location=('<?= base_url()?>/laporan/index')">
     Kembali
 </button>
 
@@ -71,7 +71,7 @@ Laporan Laba
     function tampilGrafik() {
         $.ajax({
             type: "post",
-            url: "/laporan/tampilGrafikBarangMasuk",
+            url: "<?= base_url() ?>/laporan/tampilGrafikBarangMasuk",
             data: {
                 bulan: $('#bulan').val()
             },
@@ -94,7 +94,7 @@ Laporan Laba
     function untungGrafik() {
         $.ajax({
             type: "post",
-            url: "/laporan/tampilGrafikUntung",
+            url: "<?= base_url() ?>/laporan/tampilGrafikUntung",
             data: {
                 bulan: $('#bulan').val()
             },

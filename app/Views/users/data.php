@@ -44,7 +44,7 @@ $(document).ready(function() {
         processing: true,
         serverSide: true,
         ajax: {
-            url: '/users/listData'
+            url: '<?= base_url()?>/users/listData'
         },
         fixedColumns: true,
         order: [],
@@ -76,7 +76,7 @@ $(document).ready(function() {
     $('.btnAddUsers').click(function(e) {
         e.preventDefault();
         $.ajax({
-            url: "/users/formUsers",
+            url: "<?= base_url()?>/users/formUsers",
             success: function(response) {
                 $('.viewmodal').html(response).show();
                 $('#modalAddUsers').on('shown.bs.modal', function(event) {
@@ -95,7 +95,7 @@ $(document).ready(function() {
 function edit(userid) {
     $.ajax({
         type: "post",
-        url: "/users/formedit",
+        url: "<?= base_url()?>/users/formedit",
         data: {
             userid: userid
         },
